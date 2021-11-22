@@ -23,7 +23,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: java-microservice-service
+  name: microservice-service
 spec:
   #Creating a service of type load balancer. Load balancer gets created but takes time to reflect
   type: LoadBalancer 
