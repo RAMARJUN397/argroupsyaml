@@ -1,35 +1,21 @@
+
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: microservice-deployment
-  labels:
-    app: argroups 
+  name: micro-service-deployment
 spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: argroups 
-  template:
-    metadata:
-      labels:
-        app: argroups 
-    spec:
-      containers:
-      - name: argroups 
-        image: 328651874878.dkr.ecr.ap-south-1.amazonaws.com/argroups:latest
-        ports:
-        - containerPort: 8060
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: microservice-service
-spec:
-  #Creating a service of type load balancer. Load balancer gets created but takes time to reflect
-  type: LoadBalancer 
-  selector:
-    app: argroups 
-  ports:
-  - protocol: TCP
-    port: 8060
-    targetPort: 8060
+  selector:
+    matchLabels:
+      app: argroups
+  replicas: 2 # tells deployment to run 2 pods matching the template
+  template:
+    metadata:
+      labels:
+        app: argroups
+    spec:
+      containers:
+      - name: argroups
+        image: 328651874878.dkr.ecr.ap-south-1.amazonaws.com/argroups:latest
+        ports:
+        - containerPort: 8060
+
