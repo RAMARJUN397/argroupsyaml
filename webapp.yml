@@ -15,7 +15,20 @@ spec:
     spec:
       containers:
       - name: argroups
-        image: 328651874878.dkr.ecr.ap-south-1.amazonaws.com/argroups:latest
+        image: sarangarao/sxb-react-frontend:v1
+        imagePullPolicy: Always
         ports:
         - containerPort: 8060
+        
+---
+kind: Service
+apiVersion: v1
+metadata:
+ name: argroups
+spec:
+ type: NodePort
+ ports:
+ - port: 80
+ targetPort: 80
+ protocol: TCP
 
